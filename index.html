@@ -1344,7 +1344,165 @@
         height: 30px;
     }
 }
+/* =========================================
+   KONFIRMASI DONASI WHATSAPP
+========================================= */
 
+.donation-confirmation {
+    max-width: 700px;
+    margin: 50px auto 0;
+    padding: 32px;
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+}
+
+.confirmation-header {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 28px;
+}
+
+.confirmation-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 50%;
+    background: var(--primary-soft);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.4rem;
+}
+
+.confirmation-header h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 6px;
+}
+
+.confirmation-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.confirmation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.form-group label span {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 15px 16px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border-color);
+    background: #ffffff;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--primary-soft);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.selected-donation {
+    background: var(--primary-bg);
+    border: 1px solid rgba(35, 98, 56, 0.15);
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.selected-donation span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.selected-donation strong {
+    color: var(--primary);
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+.btn-whatsapp-confirm {
+    width: 100%;
+    padding: 17px 24px;
+    background: #25D366;
+    color: #ffffff;
+    font-size: 1.05rem;
+    border: none;
+    margin-top: 4px;
+}
+
+.btn-whatsapp-confirm:hover {
+    background: #1ebe5d;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
+}
+
+.confirmation-note {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .donation-confirmation {
+        padding: 24px 18px;
+        margin-top: 35px;
+    }
+
+    .confirmation-header h3 {
+        font-size: 1.3rem;
+    }
+
+    .selected-donation {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}
 </style>
 </head>
 <body>
@@ -1841,6 +1999,97 @@
                 </div>
             </div>
         </div>
+        <!-- KONFIRMASI DONASI WHATSAPP -->
+<div class="donation-confirmation" id="konfirmasiDonasi">
+    <div class="confirmation-header">
+        <div class="confirmation-icon">
+            ✓
+        </div>
+
+        <div>
+            <h3>Sudah Melakukan Infaq?</h3>
+            <p>
+                Konfirmasikan infaq Anda melalui WhatsApp agar tim
+                Dermawan Indonesia dapat melakukan verifikasi.
+            </p>
+        </div>
+    </div>
+
+    <div class="confirmation-form">
+
+        <div class="form-group">
+            <label for="donorName">Nama Donatur</label>
+            <input
+                type="text"
+                id="donorName"
+                placeholder="Masukkan nama Anda"
+                autocomplete="name"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="donorPhone">Nomor WhatsApp</label>
+            <input
+                type="tel"
+                id="donorPhone"
+                placeholder="Contoh: 085712345678"
+                autocomplete="tel"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="paymentMethod">Metode Pembayaran</label>
+
+            <select id="paymentMethod">
+                <option value="">Pilih metode pembayaran</option>
+                <option value="QRIS">QRIS</option>
+                <option value="Transfer BSI">Transfer Bank BSI</option>
+            </select>
+        </div>
+
+        <div class="selected-donation">
+            <span>Nominal Infaq</span>
+
+            <strong id="confirmationAmount">
+                Rp10.000
+            </strong>
+        </div>
+
+        <div class="form-group">
+            <label for="donorMessage">
+                Pesan / Doa <span>(Opsional)</span>
+            </label>
+
+            <textarea
+                id="donorMessage"
+                rows="3"
+                placeholder="Tuliskan pesan atau doa Anda..."
+            ></textarea>
+        </div>
+
+        <button
+            type="button"
+            class="btn btn-whatsapp-confirm"
+            onclick="confirmDonationWhatsApp()"
+        >
+            <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+            >
+                <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .16 5.34.16 11.91c0 2.1.55 4.15 1.6 5.96L.06 24l6.28-1.65a11.9 11.9 0 0 0 5.72 1.46h.01c6.56 0 11.9-5.34 11.9-11.91 0-3.18-1.22-6.17-3.45-8.42z"/>
+            </svg>
+
+            Konfirmasi via WhatsApp
+        </button>
+
+        <div class="confirmation-note">
+            🔒 Data Anda hanya digunakan untuk verifikasi infaq.
+        </div>
+
+    </div>
+</div>
     </section>
 
     <!-- TRUST / KEUNGGULAN -->
@@ -2093,25 +2342,38 @@
         let selectedDonationAmount = 10000;
 
         function selectAmount(amount, element) {
-            selectedDonationAmount = amount;
-            document.getElementById('customAmount').value = '';
-            
-            // Remove active class from all buttons
-            const buttons = document.querySelectorAll('.amount-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
-            // Add active class to clicked button
-            element.classList.add('active');
-        }
+
+    selectedDonationAmount = amount;
+
+    document.getElementById('customAmount').value = '';
+
+    const buttons = document.querySelectorAll('.amount-btn');
+
+    buttons.forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    element.classList.add('active');
+
+    updateConfirmationAmount();
+}
 
         function handleCustomAmountInput(val) {
-            const buttons = document.querySelectorAll('.amount-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
 
-            if (val && val > 0) {
-                selectedDonationAmount = parseInt(val);
-            }
-        }
+    const buttons = document.querySelectorAll('.amount-btn');
+
+    buttons.forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    if (val && parseInt(val) > 0) {
+
+        selectedDonationAmount = parseInt(val);
+
+        updateConfirmationAmount();
+
+    }
+}
 
         function proceedToPayment() {
             const paymentEl = document.getElementById('pembayaran');
@@ -2119,7 +2381,139 @@
                 paymentEl.scrollIntoView({ behavior: 'smooth' });
             }
         }
+// =========================================
+// KONFIRMASI DONASI VIA WHATSAPP
+// =========================================
 
+const ADMIN_WHATSAPP = "6285161724539";
+
+
+function formatRupiah(amount) {
+
+    return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0
+    }).format(amount);
+
+}
+
+
+function updateConfirmationAmount() {
+
+    const amountElement =
+        document.getElementById('confirmationAmount');
+
+    if (amountElement) {
+
+        amountElement.textContent =
+            formatRupiah(selectedDonationAmount);
+
+    }
+}
+
+
+function confirmDonationWhatsApp() {
+
+    const donorName =
+        document.getElementById('donorName').value.trim();
+
+    const donorPhone =
+        document.getElementById('donorPhone').value.trim();
+
+    const paymentMethod =
+        document.getElementById('paymentMethod').value;
+
+    const donorMessage =
+        document.getElementById('donorMessage').value.trim();
+
+
+    if (!donorName) {
+
+        alert("Silakan masukkan nama donatur.");
+
+        document.getElementById('donorName').focus();
+
+        return;
+    }
+
+
+    if (!donorPhone) {
+
+        alert("Silakan masukkan nomor WhatsApp.");
+
+        document.getElementById('donorPhone').focus();
+
+        return;
+    }
+
+
+    if (!paymentMethod) {
+
+        alert("Silakan pilih metode pembayaran.");
+
+        document.getElementById('paymentMethod').focus();
+
+        return;
+    }
+
+
+    if (!selectedDonationAmount ||
+        selectedDonationAmount < 10000) {
+
+        alert("Nominal infaq minimal Rp10.000.");
+
+        return;
+    }
+
+
+    const formattedAmount =
+        formatRupiah(selectedDonationAmount);
+
+
+    let message = `Assalamu'alaikum Admin Dermawan Indonesia.
+
+Saya ingin melakukan konfirmasi infaq untuk program:
+
+*INFAQ PEDAGANG NAIK KELAS*
+
+Berikut data infaq saya:
+
+👤 *Nama:* ${donorName}
+📱 *WhatsApp:* ${donorPhone}
+💚 *Nominal Infaq:* ${formattedAmount}
+💳 *Metode Pembayaran:* ${paymentMethod}`;
+
+
+    if (donorMessage) {
+
+        message += `
+
+💬 *Pesan / Doa:*
+${donorMessage}`;
+
+    }
+
+
+    message += `
+
+Saya telah melakukan pembayaran.
+
+Mohon dibantu untuk konfirmasi dan verifikasi infaq saya.
+
+Terima kasih. 🙏`;
+
+
+    const whatsappURL =
+        `https://wa.me/${ADMIN_WHATSAPP}?text=${encodeURIComponent(message)}`;
+
+
+    window.open(
+        whatsappURL,
+        '_blank',
+        'noopener,noreferrer'
+    );
+}
         // --- 2. COPY BANK ACCOUNT LOGIC ---
         // EDIT DI SINI: Ubah nomor rekening BSI asli untuk fitur Copy
         function copyAccount() {
@@ -2240,6 +2634,11 @@
                 }
             }
         });
+        document.addEventListener('DOMContentLoaded', function () {
+
+    updateConfirmationAmount();
+
+});
     </script>
     <!-- =========================================
      TOMBOL WHATSAPP MELAYANG
